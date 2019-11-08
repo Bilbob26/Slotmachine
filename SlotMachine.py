@@ -6,11 +6,11 @@ pygame.init()
 height_screen = 500
 width_screen = 750
 
-win = pygame.display.set_mode((width_screen, height_screen))
-pygame.display.set_caption('Slot Machine')
-font = pygame.font.SysFont(None, 100)
+win = pygame.display.set_mode((width_screen, height_screen))#make the GUI
+pygame.display.set_caption('Slot Machine')#GUI caption
+font = pygame.font.SysFont(None, 100)#caption font
 
-banana = pygame.image.load('banana.jpg')
+banana = pygame.image.load('banana.jpg')#all the fruits
 cherry = pygame.image.load('cherry.jpg')
 bar = pygame.image.load('bar.jpg')
 bigwin = pygame.image.load('bigwin.jpg')
@@ -20,7 +20,7 @@ melon = pygame.image.load('melon.jpg')
 orange = pygame.image.load('orange.jpg')
 seven = pygame.image.load('seven.jpg')
 
-all_fruits = [banana, bar, cherry, bigwin, grape, lemon, melon, orange, seven]
+all_fruits = [banana, bar, cherry, bigwin, grape, lemon, melon, orange, seven]#fruits in an array
 
 smallText = pygame.font.Font('freesansbold.ttf',20)
 largeText = pygame.font.Font('freesansbold.ttf',200)
@@ -41,7 +41,7 @@ class UI:
 		self.mouse = pygame.mouse.get_pos()
 		self.pressed = pygame.mouse.get_pressed()
 
-		self.textSurf, self.textRect = text_objects(self.text, smallText)
+		self.textSurf, self.textRect = text_objects(self.text, smallText)#text
 		self.win = win
 
 	def render(self):
@@ -56,37 +56,37 @@ class UI:
 		pygame.draw.rect(win, (0, 155, 0), (self.x, self.y, self.w, self.h))
 		self.render_text()
 
-	def unRender(self):
+	def unRender(self):#makes the button dissappear
 		pygame.draw.rect(win, (0, 0, 0), (self.x, self.y, self.w, self.h))
 
-	def render_text(self):
+	def render_text(self):#renders the text
 		self.textSurf, self.textRect = text_objects(self.text, smallText)
-		self.textRect.center = (svdself.x + self.w/2, self.y + self.h/2)
+		self.textRect.center = (self.x + self.w/2, self.y + self.h/2)
 		self.win.blit(self.textSurf, self.textRect)
 
 	def mouse_actions(self):
-		self.mouse = pygame.mouse.get_pos()
-		self.pressed = pygame.mouse.get_pressed()
+		self.mouse = pygame.mouse.get_pos()#gets mouse position
+		self.pressed = pygame.mouse.get_pressed()#sees if mouse is pressed
 
 	def click(self):
-		self.render()
+		self.render()#renders the button
 		self.mouse_actions()
-		if (self.x < self.mouse[0] < self.x + self.w) and (self.y < self.mouse[1] < self.y + self.h):
-			self.render_hover()
-			if self.pressed[0] == 1:
-				self.render_click()
+		if (self.x < self.mouse[0] < self.x + self.w) and (self.y < self.mouse[1] < self.y + self.h):#checks if the mouse is with the button
+			self.render_hover()#hover colour
+			if self.pressed[0] == 1:#sees if button is clicked
+				self.render_click()#click colour
 
 
 
 def main():
-	startButton.click()
-	slot1 = random.randint(0, 8)
-	slot2 = random.randint(0, 8)
-	slot3 = random.randint(0, 8)
+	startButton.click()#renders the button
+	slot1 = random.randint(0, 8)#random number 1
+	slot2 = random.randint(0, 8)#2
+	slot3 = random.randint(0, 8)#3
 
-	#win.blit(win.blit(all_fruits[0], (100, 150)))
+	win.blit(all_fruits[0], (100, 150))
 
-startButton = UI(400, 200, 75, 50, 'Click!', win)
+startButton = UI(550, 200, 75, 50, 'Click!', win)#button to randomise the fruits
 
 
 run = True
