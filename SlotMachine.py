@@ -45,15 +45,15 @@ class UI:
 		self.win = win
 
 	def render(self):
-		pygame.draw.rect(win, (0, 255, 0), (self.x, self.y, self.w, self.h))
+		pygame.draw.rect(win, (255, 0, 0), (self.x, self.y, self.w, self.h))
 		self.render_text()
 
 	def render_hover(self):
-		pygame.draw.rect(win, (0, 200, 0), (self.x, self.y, self.w, self.h))
+		pygame.draw.rect(win, (200, 0, 0), (self.x, self.y, self.w, self.h))
 		self.render_text()
 
 	def render_click(self):
-		pygame.draw.rect(win, (0, 155, 0), (self.x, self.y, self.w, self.h))
+		pygame.draw.rect(win, (150, 0, 0), (self.x, self.y, self.w, self.h))
 		self.render_text()
 
 	def unRender(self):#makes the button dissappear
@@ -73,8 +73,17 @@ class UI:
 		self.mouse_actions()
 		if (self.x < self.mouse[0] < self.x + self.w) and (self.y < self.mouse[1] < self.y + self.h):#checks if the mouse is with the button
 			self.render_hover()#hover colour
-			if self.pressed[0] == 1:#sees if button is clicked
-				self.render_click()#click colour
+			if self.pressed[0] == 1:
+
+				if self.y < 300 and self.y > 150:#sees if button is clicked
+				
+					self.y = self.mouse[1] - self.w/2
+					self.render_click()#click colour
+				elif self.y <= 150:
+					self.y = 151
+				elif self.y >= 300:
+					self.y = 299
+
 
 
 
@@ -86,13 +95,13 @@ def main():
 
 	win.blit(all_fruits[0], (100, 150))
 
-startButton = UI(550, 200, 75, 50, 'Click!', win)#button to randomise the fruits
+startButton = UI(550, 200, 25, 25, '', win)#button to randomise the fruits
 
 
 run = True
 while run:
 	win.fill((0, 0, 0))
-	pygame.time.delay(60)
+	#pygame.time.delay(10)
 
 	
 
