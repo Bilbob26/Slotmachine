@@ -82,18 +82,30 @@ class UI:
 				elif self.y <= 150:
 					self.y = 151
 				elif self.y >= 300:
-					self.y = 299
+					return True
 
 
 
+def pause(pic1, pic2, pic3):
+	win.blit(all_fruits[pic1], (100, 150))
+	win.blit(all_fruits[pic2], (100, 150))
+	win.blit(all_fruits[pic3], (100, 150))
 
-def main():
-	startButton.click()#renders the button
-	slot1 = random.randint(0, 8)#random number 1
-	slot2 = random.randint(0, 8)#2
-	slot3 = random.randint(0, 8)#3
 
-	win.blit(all_fruits[0], (100, 150))
+
+def lever():
+
+	if startButton.click():#renders the button
+		#win.blit(all_fruits[0], (100, 150))
+		slot1 = random.randint(0, 8)#random number 1
+		slot2 = random.randint(0, 8)#2
+		slot3 = random.randint(0, 8)#3
+		machine(slot1, slot2, slot3)
+
+		
+
+def machine(slot1, slot2, slot3):
+	win.blit(all_fruits[slot1], (100, 150))
 
 startButton = UI(550, 200, 25, 25, '', win)#button to randomise the fruits
 
@@ -109,7 +121,7 @@ while run:
 		if event.type == pygame.QUIT:
 			run = False
 	
-	main()
+	lever()
 
 	pygame.display.update()
 
